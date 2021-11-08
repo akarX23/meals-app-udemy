@@ -1,8 +1,7 @@
 import React from "react";
-import { FlatList, View } from "react-native";
-import tw from "tailwind-react-native-classnames";
-import CategoryGridItem from "../components/CategoryGridItem";
+import { FlatList } from "react-native";
 
+import CategoryGridItem from "../components/CategoryGridItem";
 import { CATEGORIES } from "../data/dummy-data";
 
 const CategoriesScreen = ({ navigation }) => {

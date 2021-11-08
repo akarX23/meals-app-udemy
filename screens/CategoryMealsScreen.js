@@ -1,13 +1,6 @@
 import React, { useEffect } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  FlatList,
-} from "react-native";
-import tw from "tailwind-react-native-classnames";
-import MealItem from "../components/MealItem";
+import { View, StyleSheet } from "react-native";
+import MealList from "../components/MealList";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
 
 const CategoryMealScreen = ({ navigation, route: { params } }) => {
@@ -24,25 +17,9 @@ const CategoryMealScreen = ({ navigation, route: { params } }) => {
     });
   }, [params]);
 
-  const renderMeal = ({ item }) => (
-    <MealItem
-      onSelect={() =>
-        navigation.navigate("MealDetail", {
-          mealId: item.id,
-        })
-      }
-      data={item}
-    />
-  );
-
   return (
     <View style={styles.screen}>
-      <FlatList
-        data={mealsToDisplay}
-        keyExtractor={(item) => item.id}
-        renderItem={renderMeal}
-        style={tw`w-full px-3 pt-4`}
-      />
+      <MealList listData={mealsToDisplay} navigation={navigation} />
     </View>
   );
 };

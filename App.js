@@ -1,12 +1,11 @@
 // In App.js in a new project
 
 import React, { useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
 
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { enableScreens } from "react-native-screens";
-import MealsNavigation from "./navigation/MealsNavigation";
+import CombineNavigators from "./navigation";
 
 enableScreens();
 
@@ -33,11 +32,7 @@ function App() {
     );
   }
 
-  return (
-    <NavigationContainer>
-      <MealsNavigation />
-    </NavigationContainer>
-  );
+  return <CombineNavigators />;
 }
 
 export default App;
