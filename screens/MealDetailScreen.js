@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { MEALS } from "../data/dummy-data";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import CustomHeaderButton from "../components/HeaderButton";
 
-const MealDetailScreen = (props) => {
+const MealDetailScreen = ({ navigation, route: { params } }) => {
+  const mealId = params.mealId;
+
+  const meal = MEALS.find((meal) => meal.id === mealId);
+  useEffect(() => {
+    navigation.setOptions({
+      title: meal.title,
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+          <Item
+            title="Favourite"
+            iconName="ios-star"
+            onPress={() => alert("Mark as favourite")}
+          />
+        </HeaderButtons>
+      ),
+    });
+  }, [params]);
+
   return (
     <View style={styles.screen}>
-      <Text>The Meal Detail Screen!</Text>
-      <Button title="Go to top" onPress={() => props.navigation.popToTop()} />
+      <Text>{meal.title}</Text>
+      <Button title="Go to top" onPress={() => navigation.popToTop()} />
     </View>
   );
 };
