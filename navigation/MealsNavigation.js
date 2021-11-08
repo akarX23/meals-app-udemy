@@ -1,17 +1,14 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Platform } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import Colors from "../constants/Colors";
-
-import * as Font from "expo-font";
-import AppLoading from "expo-app-loading";
-import { Platform } from "react-native";
-import { enableScreens } from "react-native-screens";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,11 +32,34 @@ const MealsStackNavigator = () => {
   );
 };
 
+const formTabIcon = (iconName, focused) => {
+  let color = focused ? Colors.accentColor : "black";
+
+  return <Ionicons name={iconName} size={23} color={color} />;
+};
+
 const MealsTabNavigation = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Meals" component={MealsStackNavigator} />
-      <Tab.Screen name="Favourites" component={FavoritesScreen} />
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: Colors.accentColor,
+      }}
+    >
+      <Tab.Screen
+        name="Meals"
+        component={MealsStackNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => formTabIcon("restaurant", focused),
+        }}
+      />
+      <Tab.Screen
+        name="Favourites"
+        component={FavoritesScreen}
+        options={{
+          tabBarIcon: ({ focused }) => formTabIcon("heart-sharp", focused),
+        }}
+      />
     </Tab.Navigator>
   );
 };
