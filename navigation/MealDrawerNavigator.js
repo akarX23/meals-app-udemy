@@ -4,6 +4,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import FilterStackNavigator from "./FilterStackNavigator";
 import MealsTabNavigation from "./MealTabNavigator";
 import Colors from "../constants/Colors";
+import CustomDrawer from "../components/Drawer";
 
 const Drawer = createDrawerNavigator();
 
@@ -18,6 +19,7 @@ export default function MealDrawerNavigator() {
         },
         drawerInactiveTintColor: "black",
       }}
+      drawerContent={(props) => <CustomDrawer {...props} />}
     >
       <Drawer.Screen
         name="FavMeals"
