@@ -14,10 +14,8 @@ export default function MealDrawerNavigator() {
       screenOptions={{
         headerShown: false,
         drawerActiveTintColor: Colors.accentColor,
-        drawerLabelStyle: {
-          fontFamily: "open-sans-bold",
-        },
         drawerInactiveTintColor: "black",
+        drawerType: "back",
       }}
       drawerContent={(props) => <CustomDrawer {...props} />}
     >

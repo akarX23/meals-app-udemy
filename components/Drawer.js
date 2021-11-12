@@ -14,6 +14,7 @@ const Drawer = (props) => {
         <Text
           style={tw.style(`text-lg`, {
             color: focused ? Colors.accentColor : color,
+            fontFamily: "open-sans",
           })}
         >
           {label}

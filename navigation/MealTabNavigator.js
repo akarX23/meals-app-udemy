@@ -7,6 +7,7 @@ import FavouriteMealsStack from "./FavouriteMealStackNavigator";
 import MealsStackNavigator from "./MealStackNavigator";
 import { isAndroid } from "../helpers/utils";
 import Colors from "../constants/Colors";
+import { Text } from "react-native";
 
 const Tab = isAndroid
   ? createMaterialBottomTabNavigator()
@@ -44,6 +45,9 @@ const MealsTabNavigation = () => {
         options={{
           tabBarIcon: ({ focused }) => formTabIcon("restaurant", focused),
           tabBarColor: Colors.primary,
+          tabBarLabel: (
+            <Text style={{ fontFamily: "open-sans-bold" }}>Meals</Text>
+          ),
         }}
       />
       <Tab.Screen
@@ -52,6 +56,9 @@ const MealsTabNavigation = () => {
         options={{
           tabBarIcon: ({ focused }) => formTabIcon("star", focused),
           tabBarColor: Colors.secondary,
+          tabBarLabel: (
+            <Text style={{ fontFamily: "open-sans-bold" }}>Favourite</Text>
+          ),
         }}
       />
     </Tab.Navigator>

@@ -30,6 +30,12 @@ const MealStackNavigator = ({ navigation }) => {
             />
           </HeaderButtons>
         ),
+        headerTitleStyle: {
+          fontFamily: "open-sans-bold",
+        },
+        headerBackTitleStyle: {
+          fontFamily: "open-sans",
+        },
       }}
     >
       <Stack.Screen name="Categories" component={CategoriesScreen} />
