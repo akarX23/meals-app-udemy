@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import MealList from "../components/MealList";
-import { MEALS } from "../data/dummy-data";
 
 const FavoritesScreen = ({ navigation }) => {
-  const meals = MEALS.filter((item, i) => i < 5);
+  const { all_meals, fav_meals } = useSelector((state) => state.meal);
 
   useEffect(() => {
     navigation.setOptions({
@@ -12,7 +12,7 @@ const FavoritesScreen = ({ navigation }) => {
     });
   }, []);
 
-  return <MealList listData={meals} navigation={navigation} />;
+  return <MealList listData={fav_meals} navigation={navigation} />;
 };
 
 export default FavoritesScreen;

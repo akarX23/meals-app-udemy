@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const CustomText = ({ bold, style, ...rest }) => {
+const CustomText = ({ bold, style, children, ...rest }) => {
   return (
     <Text
       style={{
@@ -9,7 +9,9 @@ const CustomText = ({ bold, style, ...rest }) => {
         ...style,
       }}
       {...rest}
-    ></Text>
+    >
+      {children}
+    </Text>
   );
 };
 

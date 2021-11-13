@@ -8,18 +8,23 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-import { MEALS } from "../data/dummy-data";
+import { useDispatch, useSelector } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import CustomHeaderButton from "../components/HeaderButton";
 import tw from "tailwind-react-native-classnames";
-import Colors from "../constants/Colors";
-// import { FlatList } from "react-native-gesture-handler";
 import { Entypo, Ionicons, MaterialIcons } from "@expo/vector-icons";
+
+import CustomHeaderButton from "../components/HeaderButton";
+import { toggleFavouriteMeal } from "../actions/meals";
 
 const MealDetailScreen = ({ navigation, route: { params } }) => {
   const mealId = params.mealId;
 
-  const meal = MEALS.find((meal) => meal.id === mealId);
+  const { all_meals, fav_meals } = useSelector((state) => state.meal);
+  const dispatch = useDispatch();
+
+  const meal = all_meals.find((meal) => meal.id === mealId);
+  const isFav = fav_meals.find((meal) => meal.id === mealId);
+
   useEffect(() => {
     navigation.setOptions({
       title: meal.title,
@@ -27,13 +32,13 @@ const MealDetailScreen = ({ navigation, route: { params } }) => {
         <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
           <Item
             title="Favourite"
-            iconName="ios-star"
-            onPress={() => alert("Mark as favourite")}
+            iconName={isFav ? "ios-star" : "ios-star-outline"}
+            onPress={() => dispatch(toggleFavouriteMeal(mealId))}
           />
         </HeaderButtons>
       ),
     });
-  }, [params]);
+  }, [params, fav_meals]);
 
   const renderIngredient = (item) => (
     <View style={tw.style(`flex-row my-1 flex-1 items-center`)} key={item}>
