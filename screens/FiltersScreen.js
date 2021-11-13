@@ -23,16 +23,14 @@ const FiltersScreen = ({ navigation }) => {
 
   useEffect(() => {
     let filteredMeals = all_meals.filter((meal) => {
-      let keepMeal = true;
+      let keepMeal = false;
 
       if (
-        (isLactoseFree && !meal.isLactoseFree) ||
-        (isGlutenFree &&
-          !meal.isGlutenFree &&
-          isVegetarian &&
-          !meal.isVegetarian)
+        ((isLactoseFree && meal.isLactoseFree) || !isLactoseFree) &&
+        ((isGlutenFree && meal.isGlutenFree) || !isGlutenFree) &&
+        ((isVegetarian && meal.isVegetarian) || !isVegetarian)
       )
-        keepMeal = false;
+        keepMeal = true;
 
       return keepMeal;
     });
